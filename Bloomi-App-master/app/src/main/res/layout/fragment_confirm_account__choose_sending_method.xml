@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="18dp"
+    tools:context=".ConfirmAccount.FragmentConfirmAccount_ChooseSendingMethod"
+    android:background="@color/white">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dedede"></TextView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="53dp">
+
+        <ImageView
+            android:id="@+id/f_ConfirmAccount_BackToSearchAccount"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow_back"></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Confirm your account"
+            android:textColor="@color/black"
+            android:textSize="15dp"></TextView>
+
+        <TextView
+            android:id="@+id/f_ConfirmAccount_CancelToLogIn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_regular"
+            android:padding="5dp"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+
+            ></TextView>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dedede"
+        android:layout_marginTop="53dp"></TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <ImageView
+            android:id="@+id/rv_SearchAccount_Avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center">
+
+        </ImageView>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="30dp"
+            android:layout_height="match_parent">
+
+        </androidx.legacy.widget.Space>
+
+        <TextView
+            android:id="@+id/rv_SearchAccount_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_vertical"
+            android:text="name"
+            android:textColor="@color/black"></TextView>
+    </LinearLayout>
+
+    <worker8.com.github.radiogroupplus.RadioGroupPlus
+        android:id="@+id/rv_SearchAccount_ChooseMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="180dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dedede"></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm via SMS"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    ></TextView>
+                <TextView
+                    android:id="@+id/f_ConfirmAccount_PhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00000"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    ></TextView>
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/radio_button_SMS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:buttonTint="@color/usual_color"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dedede"></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm via email"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    ></TextView>
+                <TextView
+                    android:id="@+id/f_ConfirmAccount_Email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00000"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    ></TextView>
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/radio_button_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:buttonTint="@color/usual_color"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dedede"></TextView>
+    </worker8.com.github.radiogroupplus.RadioGroupPlus>
+    <LinearLayout
+        android:layout_marginTop="330dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/big_button_peace"
+        android:elevation="10dp"
+        >
+        >
+        <TextView
+            android:id="@+id/f_ConfirmAccount_ContinueToEnterCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:text="Continue"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            ></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="420dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/big_button_white"
+        android:elevation="10dp"
+        >
+        >
+        <TextView
+            android:id="@+id/f_ConfirmAccount_BackToLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:text="Enter password to login"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            ></TextView>
+    </LinearLayout>
+
+</FrameLayout>

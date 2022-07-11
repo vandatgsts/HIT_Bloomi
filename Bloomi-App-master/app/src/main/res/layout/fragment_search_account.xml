@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchAccount.FragmentSearchAccount"
+    android:background="@color/white">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:background="@drawable/gradient_background"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
+
+
+        <EditText
+            android:id="@+id/f_SearchAccount_input"
+            android:layout_width="270dp"
+            android:layout_height="37dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/input_border"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/search"
+            android:imeActionLabel="Search"
+            android:imeOptions="actionSearch"
+            android:inputType="text|textNoSuggestions"
+            android:paddingStart="40dp"
+            android:paddingEnd="10dp"
+            android:singleLine="true"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@null"
+            android:textSize="15sp"
+            android:focusable="true" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="7dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_baseline_search_24_white" />
+        <ImageView
+            android:id="@+id/f_SearchAccount_clearInput"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_baseline_cancel_24"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="240dp"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/f_SearchAccount_cancelToHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="290dp"
+            android:fontFamily="@font/poppins_regular"
+            android:padding="5dp"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+
+            />
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".homePage.FragmentHome"
+    android:background="@color/white">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
+
+        <TextView
+            android:layout_width="317dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fs_playlist"
+            android:gravity="left|center_vertical"
+            android:text="Bloomi"
+            android:textColor="@color/usual_color"
+            android:textSize="25sp" />
+
+
+        <ImageView
+            android:id="@+id/f_home_searchAccount"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="250dp"
+            android:layout_marginEnd="14dp"
+            android:layout_toStartOf="@+id/f_home_notification"
+            android:src="@drawable/icon_search">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/f_home_notification"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/icon_notification">
+
+        </ImageView>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/f_home_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:padding="18dp"
+        android:scrollbars="vertical" />
+
+    <RelativeLayout
+        android:id="@+id/f_home_addPost"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circle_icon_peach"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="80dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/white"
+            android:textSize="35sp" />
+    </RelativeLayout>
+</FrameLayout>
