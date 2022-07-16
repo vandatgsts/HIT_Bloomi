@@ -77,20 +77,20 @@ public class FragmentHome extends Fragment {
     }
 
     // menu đăng xuất
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        if (v == btn){
-            getMenuInflater().inflate(R.menu.context_menu,menu);
-        }
-    }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.context1:
-                Toast.makeText(getBaseContext(),"context1",Toast.LENGTH_LONG).show();
-        }
-        return super.onContextItemSelected(item);
-    }
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//        if (v == btn){
+//            getMenuInflater().inflate(R.menu.context_menu,menu);
+//        }
+//    }
+//
+//    @Override
+//    public boolean onContextItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.context1:
+//                Toast.makeText(getBaseContext(),"context1",Toast.LENGTH_LONG).show();
+//        }
+//        return super.onContextItemSelected(item);
+//    }
 }

@@ -45,8 +45,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 //        Picasso.get().load(avatar).into(holder.avt);
 //        Picasso.get().load(onePost.getImage()).into(holder.image);
         holder.content.setText(onePost.getContent());
-//        holder.likes.setText(" " +onePost.getLikes());
-//        holder.comment.setText(" " +onePost.getComment());
+        holder.likes.setText(" " +onePost.getLikes());
+        holder.comment.setText(" " +onePost.getComment());
 
     }
 
@@ -62,7 +62,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             avt=itemView.findViewById(R.id.onePost_avt);
-           // image=itemView.findViewById(R.id.onePost_name);
+           // image=itemView.findViewById(R.id.onePost_image);
             content=itemView.findViewById(R.id.onePost_content);
             name=itemView.findViewById(R.id.onePost_name);
             likes=itemView.findViewById(R.id.onePost_countHeart);

@@ -1,5 +1,7 @@
 package com.example.bloomi.Register;
 
+import static com.example.bloomi.Register.MainActivity_Resgiter.user;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,8 +32,7 @@ public class register_Password extends Fragment {
     View mview;
     Button Next_of_c_Password;
     EditText pass,re_pass;
-    //Call_API call_api=new Call_API(getActivity());
-    //User user=MainActivity_Resgiter.user;
+    Call_API call_api;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class register_Password extends Fragment {
         pass=mview.findViewById(R.id.create_newPassword);
         re_pass=mview.findViewById(R.id.reCreare_NewPassWord);
         Next_of_c_Password=mview.findViewById(R.id.Next_of_new_PassWord);
+        call_api=new Call_API(getActivity());
         Next_of_c_Password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,23 +51,33 @@ public class register_Password extends Fragment {
                     Toast.makeText(getActivity(),"Password errol!",Toast.LENGTH_SHORT).show();
                 }
                 else
-                {   //dialog_forgot_password();
-                    MainActivity_Resgiter.user.setPassword(pass.getText().toString());
-                    MainActivity_Resgiter.user.setPassword(pass.getText().toString());
-                    Toast.makeText(getActivity(),"Register Concuragtion",Toast.LENGTH_SHORT).show();
+                {   call_api.call_API_SignUp(user);
+                    user.setPassword(pass.getText().toString());
+                    user.setPassword(pass.getText().toString());
+                    dialog_forgot_password();
+
+
                 }
             }
         });
         return mview;
     }
     private void dialog_forgot_password(){
-        Dialog dialogLogIn = new Dialog(getActivity());
-        dialogLogIn.setContentView(R.layout.dialog_register_enter_code);
-        dialogLogIn.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        Dialog dialogRegister = new Dialog(getActivity());
+        dialogRegister.setContentView(R.layout.dialog_register_enter_code);
+        dialogRegister.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         // constraintlayout must have
-        Window window = dialogLogIn.getWindow();
+        Window window = dialogRegister.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialogLogIn.show();
+        dialogRegister.show();
+        EditText d_Register_code=dialogRegister.findViewById(R.id.d_Register_code);
+        Button Clear_Resigter_Codee=dialogRegister.findViewById(R.id.Clear_Resigter_Codee);
+        Clear_Resigter_Codee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                call_api.postCodeToAPI(d_Register_code.getText().toString());
+            }
+        });
     }
 }

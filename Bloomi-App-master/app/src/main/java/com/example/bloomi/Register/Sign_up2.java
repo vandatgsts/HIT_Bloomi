@@ -15,11 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.bloomi.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the  factory method to
- * create an instance of this fragment.
- */
+
 public class Sign_up2 extends Fragment {
 
     View mview;

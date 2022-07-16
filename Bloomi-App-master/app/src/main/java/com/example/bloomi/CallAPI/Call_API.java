@@ -31,6 +31,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import org.json.JSONArray;
@@ -145,7 +147,7 @@ public class Call_API {
                         MainActivity.user_login=SharedPrefManager.getInstance(context).getUser();
                         Intent goToHomeFromLogIn = new Intent(context, MainNav.class);
                         //System.out.println("Nguyen Van Dat");
-                        loginFirebase(name,pass);
+                        //loginFirebase(name,pass);
                         context.startActivity(goToHomeFromLogIn);
                     }
                 } catch (JSONException e) {
@@ -172,7 +174,6 @@ public class Call_API {
         String Url_new_Post=url+"/api/v1/post/create/";
         RequestQueue requestQueue=Volley.newRequestQueue(context);
         JSONObject jsonObject=new JSONObject();
-
         jsonObject.put("content",newPost.getContent().toString());
         jsonObject.put("displayMode",newPost.getDisplayMode());
         final String requestBody=jsonObject.toString();
@@ -273,6 +274,7 @@ public class Call_API {
         requestQueue.add(jsonArrayRequest);
     }
     public void loginFirebase(String mail,String pass) {
+       // DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://chatapplication-677a2-default-rtdb.firebaseio.com/");
         auth.createUserWithEmailAndPassword(mail,pass)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -288,7 +290,40 @@ public class Call_API {
                         }
                     }
                 });
+    }
+    public void postCodeToAPI(String code)
+    {
+        String urlPostCode=url+"/api/v1/auth/signup/verify?token=";
+        RequestQueue requestQueue=Volley.newRequestQueue(context);
+        StringRequest jsonArrayRequest=new StringRequest(Request.Method.GET, urlPostCode+code, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject  jsonObject = new JSONObject(response);
 
+                    if(!jsonObject.getString("status").equals("SUCCESS"))
+                    {
+                        Toast.makeText(context,"Code errol!",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {   // lay mang data
+                        Toast.makeText(context,"Register Concuragtion",Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context,LogIn.class);
+                        context.startActivity(intent);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context,"vui long load lai",Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonArrayRequest);
 
     }
 }

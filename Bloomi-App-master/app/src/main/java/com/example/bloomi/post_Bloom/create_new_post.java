@@ -29,6 +29,8 @@ import com.example.bloomi.uses_manage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -50,6 +52,7 @@ public class create_new_post extends Fragment {
     FirebaseStorage storage;
     StorageReference storageReference;
     // anh
+    DatabaseReference databaseReference;
     Uri filePath;
 
     public static oneNewPost NewPost=new oneNewPost();
@@ -60,7 +63,9 @@ public class create_new_post extends Fragment {
         View view= inflater.inflate(R.layout.fragment_create_new_post, container, false);
         // up image len firebase
         storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
+        storageReference = storage.getReference("bloomi-a2ac4.appspot.com");
+        //databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("gs://bloomi-a2ac4.appspot.com");
+
         //
         imagebutton=view.findViewById(R.id.f_createPost_addImage);
         setImage=view.findViewById(R.id.f_createPost_image);
@@ -139,14 +144,14 @@ public class create_new_post extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getActivity(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

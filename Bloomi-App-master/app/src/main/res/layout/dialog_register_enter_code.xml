@@ -18,8 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:textColor="@color/text_black"
-        android:text="A code has been sent to your phone.
- Enter that code here."
+        android:text="@string/a_code_has_been_sent_to_your_email_or_phone_enter_that_code_here"
         android:textSize="15sp"
         android:gravity="center"
         android:fontFamily="@font/poppins_medium"

@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable-v24/back_btn.xml" value="0.116" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable-v24/opo_msg_back.xml" value="0.1" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable-v24/round_back_light_10.xml" value="0.116" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable-v24/round_back_theme_1000.xml" value="0.116" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable/avatar.xml" value="0.1785" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable/big_button_peace.xml" value="0.1785" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable/big_button_white.xml" value="0.1785" />
@@ -19,10 +23,13 @@
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable/input_border.xml" value="0.1785" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/drawable/layout_one_post.xml" value="0.1345" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/activity_chat.xml" value="0.1" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/activity_log_in.xml" value="0.3333333333333333" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/activity_main.xml" value="0.20967741935483872" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/activity_main_chat.xml" value="0.14392803598200898" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/activity_main_nav.xml" value="0.2" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/activity_main_resigter.xml" value="0.3" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/chat_adapter_layout.xml" value="0.1" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/chax_box.xml" value="0.20967741935483872" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/creat_a_post.xml" value="0.29453125" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/dialog_forgot_password.xml" value="0.20967741935483872" />
@@ -31,14 +38,15 @@
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/dialog_register_enter_code.xml" value="0.1922043010752688" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_account_friend.xml" value="0.22" />
-        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_account_me.xml" value="0.3333333333333333" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_account_me.xml" value="0.3" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_confirm_account__choose_sending_method.xml" value="0.20967741935483872" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_confirm_account__set_password.xml" value="0.14130434782608695" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_create_album.xml" value="0.22311827956989247" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_create_new_post.xml" value="0.260752688172043" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_forgot_password.xml" value="0.14130434782608695" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_group.xml" value="0.14130434782608695" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_home.xml" value="0.3333333333333333" />
-        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_message.xml" value="0.3333333333333333" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_message.xml" value="0.2922374429223744" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_notification.xml" value="0.2" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_register__password.xml" value="0.1922043010752688" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_register_email.xml" value="0.1922043010752688" />
@@ -48,6 +56,7 @@
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_select_album.xml" value="0.3" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_sign_up1.xml" value="0.3333333333333333" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/fragment_sign_up2.xml" value="0.1922043010752688" />
+        <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/messages_adapter_layout.xml" value="0.44776119402985076" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/new_post.xml" value="0.2506720430107527" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/one_noti.xml" value="0.3" />
         <entry key="..\:/Bloomi-App-master_2/Bloomi-App-master/app/src/main/res/layout/one_post.xml" value="0.3" />

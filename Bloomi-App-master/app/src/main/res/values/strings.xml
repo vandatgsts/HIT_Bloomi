@@ -52,5 +52,7 @@
     <string name="add_account">Add Account</string>
     <string name="logout">Logout</string>
     <string name="select_album">Select Album</string>
+    <string name="type_something">Type something ...</string>
+    <string name="a_code_has_been_sent_to_your_email_or_phone_enter_that_code_here">A code has been sent to your email or phone. Enter that code here.</string>
 
 </resources>
