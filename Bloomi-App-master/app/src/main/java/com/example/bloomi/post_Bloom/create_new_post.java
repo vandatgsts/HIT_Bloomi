@@ -2,8 +2,9 @@ package com.example.bloomi.post_Bloom;
 
 import static android.app.Activity.RESULT_OK;
 
+import static com.example.bloomi.MainActivity.user_login;
+
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -16,21 +17,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.bloomi.CallAPI.Call_API;
-import com.example.bloomi.MainActivity;
 import com.example.bloomi.R;
 import com.example.bloomi.uses_manage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -46,7 +43,7 @@ public class create_new_post extends Fragment {
     ImageButton imagebutton;
     ImageView setImage,Cancel;
     EditText content;
-    uses_manage account=MainActivity.user_login.getAccout();
+    uses_manage account= user_login.getAccout();
     Button post;
     // firebase
     FirebaseStorage storage;
@@ -54,6 +51,8 @@ public class create_new_post extends Fragment {
     // anh
     DatabaseReference databaseReference;
     Uri filePath;
+    String idImage;
+
 
     public static oneNewPost NewPost=new oneNewPost();
 
@@ -63,10 +62,11 @@ public class create_new_post extends Fragment {
         View view= inflater.inflate(R.layout.fragment_create_new_post, container, false);
         // up image len firebase
         storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference("bloomi-a2ac4.appspot.com");
+        storageReference = storage.getReference("ID Account: " +user_login.getAccout().getId()+"");
         //databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("gs://bloomi-a2ac4.appspot.com");
 
         //
+
         imagebutton=view.findViewById(R.id.f_createPost_addImage);
         setImage=view.findViewById(R.id.f_createPost_image);
         content=view.findViewById(R.id.f_createPost_content);
@@ -86,8 +86,11 @@ public class create_new_post extends Fragment {
                     NewPost.setAccountId(account.getId());
                     NewPost.setContent(content.getText().toString());
                    // System.out.println("jyfhjkgfkjh"+content.getText().toString());
-                    call.call_Api_CreateNewPost(NewPost);
                     upToFireBase();
+                    //getURLFireBase();
+                    call.call_Api_CreateNewPost(NewPost);
+
+
                     getFragmentManager().beginTransaction().remove(create_new_post.this).commit();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -95,6 +98,7 @@ public class create_new_post extends Fragment {
 
             }
         });
+
         Cancel=view.findViewById(R.id.f_createPost_cancel);
         Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,13 +141,15 @@ public class create_new_post extends Fragment {
             final ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
-
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            idImage=UUID.randomUUID().toString();
+            System.out.println(idImage);
+            StorageReference ref = storageReference.child("images/"+idImage);
             ref.putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
+                            getURLFireBase();
                             //Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -162,7 +168,46 @@ public class create_new_post extends Fragment {
                             progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
+            // lay URL anh
+
+//            System.out.println("check url ");
+//            //String location="/images/"+idImage;
+//           // StorageReference re=storageReference.child(location);
+//            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                @Override
+//                public void onSuccess(Uri uri) {
+//                    NewPost.setUrl_image(uri.toString());
+//                    System.out.println(uri.toString());
+//                    // Got the download URL for 'users/me/profile.png'
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception exception) {
+//                    // Handle any errors
+//                }
+//            });
+
+
         }
+    }
+    public void getURLFireBase()
+    {
+        String location="/images/"+idImage;
+        StorageReference re=storageReference.child(location);
+        System.out.println(idImage);
+        re.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                NewPost.setUrl_image(uri.toString());
+                System.out.println(uri.toString());
+                // Got the download URL for 'users/me/profile.png'
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
     }
 
 }

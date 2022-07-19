@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloomi.Message.chatBox;
 import com.example.bloomi.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class charBox_Adapter extends RecyclerView.Adapter<charBox_Adapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull charBox_Adapter.ViewHoder holder, int position) {
         chatBox chatbox=chatBoxList.get(position);
-        holder.avatar.setImageResource(chatbox.getAvatar());
+        Picasso.get().load(chatbox.getAvatar()).into(holder.avatar);
         holder.Name.setText(chatbox.getName());
         holder.time.setText(chatbox.getTime());
         holder.message.setText(chatbox.getMessage());

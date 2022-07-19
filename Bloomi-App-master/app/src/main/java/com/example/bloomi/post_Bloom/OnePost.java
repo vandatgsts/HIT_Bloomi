@@ -1,10 +1,11 @@
 package com.example.bloomi.post_Bloom;
 
 public class OnePost {
-    private String content;
-    private String image;
-    private int likes,comment;
+    private int idpost;
 
+    private String content;
+    private int likes,comment;
+    private String image;
     public int getComment() {
         return comment;
     }
@@ -18,6 +19,19 @@ public class OnePost {
         this.content = content;
         this.likes = likes;
         this.comment=comment;
+    }
+
+    public OnePost(String content, int likes, int comment,String image) {
+        this.content = content;
+        this.image = image;
+        this.likes = likes;
+        this.comment = comment;
+    }
+    public OnePost(int idpost, String content, int likes, int comment) {
+        this.idpost = idpost;
+        this.content = content;
+        this.likes = likes;
+        this.comment = comment;
     }
 
     public OnePost(String content) {

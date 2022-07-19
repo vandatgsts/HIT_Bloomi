@@ -29,7 +29,7 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
-                    android:src="@color/black"></de.hdodenhof.circleimageview.CircleImageView>
+                    android:src="@color/black"/>
                 <TextView
                     android:id="@+id/onePost_name"
                     android:layout_width="250dp"
@@ -64,6 +64,7 @@
 
                 <ImageView
                     android:id="@+id/onePost_image"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -79,11 +80,15 @@
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
-                    <ImageView
+                    <CheckBox
                         android:id="@+id/onePost_heartOrNot"
                         android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/custom_heart"/>
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:stateListAnimator="@animator/anim_heart"
+                        android:background="@drawable/custom_heart"/>
                     <Space
                         android:layout_width="7dp"
                         android:layout_height="match_parent"/>

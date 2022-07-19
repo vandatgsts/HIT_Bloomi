@@ -1,21 +1,21 @@
 package com.example.bloomi.Message;
 
 public class chatBox {
-    private Integer avatar;
+    private String avatar;
     String Name,time,message;
 
-    public chatBox(Integer avatar, String name, String time, String message) {
+    public chatBox(String avatar, String name, String time, String message) {
         this.avatar = avatar;
         Name = name;
         this.time = time;
         this.message = message;
     }
 
-    public Integer getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Integer avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

@@ -23,13 +23,12 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/onePost_avt"
+                android:id="@+id/f_noti_avatar"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
-                android:layout_marginRight="16dp"
-                android:src="@color/black"></de.hdodenhof.circleimageview.CircleImageView>
-
+                android:layout_marginEnd="16dp"
+                android:src="@color/black"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -47,23 +46,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Ngo Trieu Vi"
+                        android:text="@string/ngo_trieu_vi"
                         android:textColor="@color/black"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="12sp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" "></TextView>
+                    
 
                     <TextView
                         android:id="@+id/f_noti_action"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="likes your photo."
+                        android:text="@string/likes_your_photo"
                         android:textColor="@color/black"
-                        android:textSize="12sp"></TextView>
+                        android:layout_marginStart="5dp"
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -78,7 +75,7 @@
                         android:layout_height="12dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/photo_icon"></ImageView>
+                        android:src="@drawable/photo_icon"/>
 
                     <TextView
                         android:id="@+id/f_noti_timeQuantity"
@@ -87,7 +84,7 @@
                         android:fontFamily="@font/poppins_semibold"
                         android:text="20"
                         android:textColor="#717171"
-                        android:textSize="10sp"></TextView>
+                        android:textSize="10sp"/>
 
                     <TextView
                         android:id="@+id/f_noti_timeUnit"
@@ -96,12 +93,10 @@
                         android:fontFamily="@font/poppins_semibold"
                         android:text="minutes"
                         android:textColor="#717171"
-                        android:textSize="10sp"></TextView>
+                        android:layout_marginStart="5dp"
+                        android:textSize="10sp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" "></TextView>
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -109,7 +104,8 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="ago"
                         android:textColor="#717171"
-                        android:textSize="10sp"></TextView>
+                        android:layout_marginStart="5dp"
+                        android:textSize="10sp"/>
                 </LinearLayout>
 
             </LinearLayout>

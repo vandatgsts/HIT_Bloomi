@@ -1,9 +1,11 @@
 package com.example.bloomi.Adapter_Manage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +39,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         OnePost onePost = posts.get(position);
@@ -44,9 +47,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         // chua có anh nenn vo
 //        Picasso.get().load(avatar).into(holder.avt);
 //        Picasso.get().load(onePost.getImage()).into(holder.image);
+        // load anh tu url
+        Picasso.get().load(onePost.getImage()).into(holder.image);
         holder.content.setText(onePost.getContent());
         holder.likes.setText(" " +onePost.getLikes());
         holder.comment.setText(" " +onePost.getComment());
+        holder.onePost_heartOrNot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.onePost_heartOrNot.isChecked())
+                {
+                    holder.likes.setText(" " +(onePost.getLikes()+1));
+                }
+                else
+                    holder.likes.setText(" " +onePost.getLikes());
+            }
+        });
 
     }
 
@@ -59,14 +75,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         ImageView avt, image;
         TextView content, name,likes,comment;
+        CheckBox onePost_heartOrNot;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             avt=itemView.findViewById(R.id.onePost_avt);
-           // image=itemView.findViewById(R.id.onePost_image);
+            image=itemView.findViewById(R.id.onePost_image);
             content=itemView.findViewById(R.id.onePost_content);
             name=itemView.findViewById(R.id.onePost_name);
             likes=itemView.findViewById(R.id.onePost_countHeart);
             comment=itemView.findViewById(R.id.onePost_countComment);
+            onePost_heartOrNot=itemView.findViewById(R.id.onePost_heartOrNot);
         }
     }
 }

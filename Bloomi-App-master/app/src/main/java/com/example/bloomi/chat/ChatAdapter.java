@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bloomi.MemoryData;
+import com.example.bloomi.Message.MemoryData;
 import com.example.bloomi.R;
 
 

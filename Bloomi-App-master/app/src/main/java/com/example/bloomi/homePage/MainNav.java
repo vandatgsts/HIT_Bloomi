@@ -38,8 +38,8 @@ public class MainNav extends AppCompatActivity {
         binding = ActivityMainNavBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 //        Thread callPost=new Thread(this::callPostham);
-//        callPost.start();
-//        callPost.getPriority();
+//       callPost.start();
+//       callPost.getPriority();
         callPostham();
         Menu_Adapter menu_adapter=new Menu_Adapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         binding.fragmentContainerMain.setAdapter(menu_adapter);
@@ -87,6 +87,9 @@ public class MainNav extends AppCompatActivity {
                         break;
                     case R.id.Nav_Account:
                         binding.fragmentContainerMain.setCurrentItem(3);
+                        break;
+                    default:
+                        binding.fragmentContainerMain.setCurrentItem(0);
                         break;
 
                 }

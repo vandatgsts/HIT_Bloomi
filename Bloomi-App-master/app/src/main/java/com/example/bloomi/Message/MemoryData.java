@@ -1,4 +1,4 @@
-package com.example.bloomi;
+package com.example.bloomi.Message;
 
 import android.content.Context;
 

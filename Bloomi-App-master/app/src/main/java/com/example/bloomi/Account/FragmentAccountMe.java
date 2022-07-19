@@ -26,7 +26,7 @@ public class FragmentAccountMe extends Fragment {
        View view = inflater.inflate(R.layout.fragment_account_me, container, false);
        Layid(view);
 
-       f_AccountMe_name.setText(user_login.getAccout().getFirstName()+user_login.getAccout().getLastName());
+       f_AccountMe_name.setText(user_login.getAccout().getFirstName()+" "+user_login.getAccout().getLastName());
        return view;
     }
     public void Layid(View view)

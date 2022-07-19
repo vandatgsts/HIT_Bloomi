@@ -6,15 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bloomi.CallAPI.Call_API;
 import com.example.bloomi.Login.LogIn;
-import com.example.bloomi.MemoryData;
+import com.example.bloomi.Message.MemoryData;
 import com.example.bloomi.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

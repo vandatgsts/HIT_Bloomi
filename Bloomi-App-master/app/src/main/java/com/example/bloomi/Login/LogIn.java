@@ -23,22 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bloomi.CallAPI.Call_API;
-import com.example.bloomi.MainActivity;
-import com.example.bloomi.MemoryData;
+import com.example.bloomi.Message.MemoryData;
 import com.example.bloomi.R;
 import com.example.bloomi.Register.MainActivity_Resgiter;
-import com.example.bloomi.homePage.MainNav;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONException;
 
 import java.util.regex.Pattern;
 
@@ -93,6 +85,7 @@ public class LogIn extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 //   progressDialog.dismiss();
+                if (!snapshot.child("ID_Account").hasChild("" + user_login.getAccout().getId()))
                 {
                     databaseReference.child("ID_Account").child(""+user_login.getAccout().getId()).child("email").setValue(user_login.getAccout().getEmail());
                     //databaseReference.child("ID_Account").child(""+user_login.getAccout().getId()).child("name").setValue(user_login.getAccout().getPhone());

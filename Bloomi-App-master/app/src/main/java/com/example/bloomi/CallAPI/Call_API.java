@@ -5,6 +5,7 @@ import static com.example.bloomi.homePage.MainNav.list;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -174,8 +175,16 @@ public class Call_API {
         String Url_new_Post=url+"/api/v1/post/create/";
         RequestQueue requestQueue=Volley.newRequestQueue(context);
         JSONObject jsonObject=new JSONObject();
+        JSONObject jsonObject2=new JSONObject();
+        JSONArray jsonArray=new JSONArray();
         jsonObject.put("content",newPost.getContent().toString());
         jsonObject.put("displayMode",newPost.getDisplayMode());
+        //
+        jsonObject2.put("type","image");
+        jsonObject2.put("url",newPost.getUrl_image());
+        jsonArray.put(jsonObject2);
+        //
+        jsonObject.put("imageVideos",jsonArray);
         final String requestBody=jsonObject.toString();
         StringRequest jsonArrayRequest=new StringRequest(Request.Method.POST, Url_new_Post+newPost.getAccountId(), new Response.Listener<String>() {
             @Override
@@ -244,9 +253,12 @@ public class Call_API {
                         System.out.println(Url_get_Post+ID);
                         for(int i=0;i<jsonArray.length();i++)
                         {
-                            OnePost onePost=new OnePost(jsonArray.getJSONObject(i).getJSONObject("post").getString("content"),
+                            OnePost onePost=new OnePost(
+                                    jsonArray.getJSONObject(i).getJSONObject("post").getInt("id"),
+                                    jsonArray.getJSONObject(i).getJSONObject("post").getString("content"),
                                     jsonArray.getJSONObject(i).getInt("numberOfLikes"),
                                     jsonArray.getJSONObject(i).getInt("numberOfComments")
+                                   // jsonArray.getJSONObject(i).getString("URL")
                                     );
                             System.out.println(onePost.getContent());
                             list.add(onePost);
@@ -324,6 +336,40 @@ public class Call_API {
             }
         });
         requestQueue.add(jsonArrayRequest);
+
+    }
+    public void callApiNoti(int idAc)
+    {    RequestQueue requestQueue=Volley.newRequestQueue(context);
+        String urlNoti= url+"/api/v1/notification/";
+        StringRequest jsonArrayRequest=new StringRequest(Request.Method.GET, urlNoti + idAc, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        );
+
+    }
+    public void callApiReactionPost(int idAcount,int idPost)
+    {    RequestQueue requestQueue=Volley.newRequestQueue(context);
+        String urlRactPost= url+"/api/v1/react/create/";
+        StringRequest jsonArrayRequest=new StringRequest(Request.Method.GET, urlRactPost + idPost+"/"+idAcount, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        );
 
     }
 }

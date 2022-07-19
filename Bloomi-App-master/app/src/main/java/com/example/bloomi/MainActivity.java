@@ -35,11 +35,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);// khoi tao firebase
         setContentView(R.layout.activity_main);
+
         time = new Timer();
         time.schedule(new TimerTask() {
             @Override
             public void run() {
-               SharedPrefManager.getInstance(MainActivity.this).logout();
+               //SharedPrefManager.getInstance(MainActivity.this).logout();
                 if (SharedPrefManager.getInstance(MainActivity.this).isLoggedIn()) {
                     user_login = SharedPrefManager.getInstance(MainActivity.this).getUser();
                     Intent go_to_home = new Intent(MainActivity.this, MainNav.class);
@@ -59,6 +60,6 @@ public class MainActivity extends AppCompatActivity {
         bloomi.getPaint().setShader(textShader);
     }
 
-    View t;
+
 
 }
