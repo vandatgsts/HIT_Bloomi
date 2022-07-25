@@ -55,5 +55,10 @@
     <string name="type_something">Type something ...</string>
     <string name="a_code_has_been_sent_to_your_email_or_phone_enter_that_code_here">A code has been sent to your email or phone. Enter that code here.</string>
     <string name="likes_your_photo">likes your photo.</string>
+    <string name="continue_as_google">Continue as Google</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="everyone">Everyone</string>
+    <string name="logic_will_get_you_from_a_to_b_imagination_will_take_you_everywhere">“Logic will get you from A to B. Imagination will take you everywhere.”</string>
 
 </resources>

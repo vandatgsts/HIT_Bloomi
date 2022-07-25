@@ -29,13 +29,12 @@ public class MainActivity extends AppCompatActivity {
 
     Timer time;
     public static User_login user_login;
-
+    public static List<OnePost> listLocal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);// khoi tao firebase
         setContentView(R.layout.activity_main);
-
         time = new Timer();
         time.schedule(new TimerTask() {
             @Override

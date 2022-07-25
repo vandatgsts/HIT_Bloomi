@@ -57,19 +57,31 @@
         android:textSize="18sp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Dương Trinh"/>
-    <TextView
-        android:id="@+id/f_AccountMe_bio"
-        app:layout_constraintTop_toBottomOf="@id/f_AccountMe_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxWidth="250dp"
-        android:textSize="12sp"
-        android:textColor="@color/text_gray"
-        android:textAlignment="center"
-        android:fontFamily="@font/poppins_regular"
-        android:text="“Logic will get you from A to B. Imagination will take you everywhere.”"/>
+
+        <TextView
+            android:id="@+id/f_AccountMe_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:maxWidth="250dp"
+            android:text="@string/logic_will_get_you_from_a_to_b_imagination_will_take_you_everywhere"
+            android:textAlignment="center"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/f_AccountMe_name" />
+
+        <EditText
+            android:id="@+id/edit_vb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_regular"
+            android:maxWidth="250dp"
+            android:text="@string/logic_will_get_you_from_a_to_b_imagination_will_take_you_everywhere"
+            android:textAlignment="center"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/f_AccountMe_editBio"

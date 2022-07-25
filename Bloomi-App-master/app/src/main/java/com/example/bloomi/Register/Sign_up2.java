@@ -61,6 +61,8 @@ public class Sign_up2 extends Fragment {
         button_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                button_phone.setBackgroundColor(getResources().getColor(R.color.light_pink));
+                button_email.setBackgroundColor(getResources().getColor(R.color.white));
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.layout_phone_email, new register_phone());
@@ -70,6 +72,8 @@ public class Sign_up2 extends Fragment {
         button_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                button_phone.setBackgroundColor(getResources().getColor(R.color.white));
+                button_email.setBackgroundColor(getResources().getColor(R.color.light_pink));
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.layout_phone_email, new register_email());

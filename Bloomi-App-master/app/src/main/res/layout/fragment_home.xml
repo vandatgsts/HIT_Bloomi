@@ -16,11 +16,12 @@
         android:paddingRight="18dp">
 
         <TextView
+            android:id="@+id/Bloomitxt"
             android:layout_width="317dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fs_playlist"
-            android:gravity="left|center_vertical"
-            android:text="Bloomi"
+            android:gravity="start|center_vertical"
+            android:text="@string/bloomi"
             android:textColor="@color/usual_color"
             android:textSize="25sp" />
 
@@ -44,15 +45,13 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/icon_notification">
-
-        </ImageView>
+            android:src="@drawable/icon_notification" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/f_home_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="55dp"
         android:padding="18dp"
         android:scrollbars="vertical" />
@@ -75,4 +74,5 @@
             android:textColor="@color/white"
             android:textSize="35sp" />
     </RelativeLayout>
+
 </FrameLayout>

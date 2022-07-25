@@ -4,31 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.example.bloomi.post_Bloom.OnePost;
 import com.example.bloomi.uses_manage;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "dataLogIn";
-//    private static final String KEY_phoneOrEmail = "keyusername";
-//    private static final String KEY_ACTIVEFLAG="activeFlag";
-//    private static final String KEY_DELETEFLAG="deleteFlag";
-//    private static final String KEY_CREATEDATE="createDate";
-//    private static final String KEY_PHONE="phone";
-//    private static final String KEY_EMAIL="email";
+
     private static final String KEY_jwt = "jwt";
-//    private static final String KEY_ID = "id";
-//    private static final String KEY_FIRSTNAME="firstName";
-//    private static final String KEY_LASTNAME="lastName";
-//    private static final String KEY_GENDER="gender";
-//    private static final String KEY_BIRTHDAY="birthday";
-//    private static final String KEY_AVATAURL="avatarUrl";
-//    private static final String KEY_COVERIMAGEURL="coverImageUrl";
-//    private static final String KEY_ADDRESS="address";
-//    private static final String KEY_AUTHPROVIDER="authProvider";
+
+    private static final String KEY_list_local="List";
     private static final String KEY_ACCOUNT="account";
     private static SharedPrefManager mInstance;
     private static Context ctx;
-
+    public static List<OnePost> list_post_local=new ArrayList<>();
     private SharedPrefManager(Context context) {
         ctx = context;
     }
@@ -67,6 +60,7 @@ public class SharedPrefManager {
                 sharedPreferences.getString(KEY_jwt, null),
                 user_manage);
     }
+
 
     //this method will logout the user
     public void logout() {

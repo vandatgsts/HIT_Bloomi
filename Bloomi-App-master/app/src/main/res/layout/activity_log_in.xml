@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="18dp"
-    >
+        >
         <LinearLayout
             android:id="@+id/LogIn_AppName"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,11 +36,12 @@
             android:layout_height="65dp"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:textColorHint="@color/white"
+
+            app:hintTextColor="@color/white"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/LogIn_Email"
-                android:background="@drawable/input_border"
+                android:background="@drawable/input_border_login"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:layout_width="match_parent"
@@ -64,12 +65,12 @@
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             android:elevation="10dp"
+            app:hintTextColor="@color/white"
             app:passwordToggleEnabled="true"
-            android:textColorHint="@color/white"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/LogIn_Password"
-                android:background="@drawable/input_border"
+                android:background="@drawable/input_border_login"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:layout_width="match_parent"

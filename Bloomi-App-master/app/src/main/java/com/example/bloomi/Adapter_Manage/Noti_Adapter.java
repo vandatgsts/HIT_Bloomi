@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloomi.Notification.Notification;
@@ -24,6 +25,8 @@ public class Noti_Adapter extends RecyclerView.Adapter<Noti_Adapter.noti_Viewhod
         this.context = context;
         Noti_list = noti_list;
     }
+
+
 
     @NonNull
     @Override

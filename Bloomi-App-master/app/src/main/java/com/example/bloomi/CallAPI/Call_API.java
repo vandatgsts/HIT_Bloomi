@@ -23,6 +23,7 @@ import com.example.bloomi.Login.LogIn;
 import com.example.bloomi.Login.SharedPrefManager;
 import com.example.bloomi.Login.User_login;
 import com.example.bloomi.MainActivity;
+import com.example.bloomi.Notification.Notification;
 import com.example.bloomi.Register.User;
 import com.example.bloomi.homePage.MainNav;
 import com.example.bloomi.post_Bloom.OnePost;
@@ -180,6 +181,7 @@ public class Call_API {
         jsonObject.put("content",newPost.getContent().toString());
         jsonObject.put("displayMode",newPost.getDisplayMode());
         //
+        System.out.println(newPost.getUrl_image());
         jsonObject2.put("type","image");
         jsonObject2.put("url",newPost.getUrl_image());
         jsonArray.put(jsonObject2);
@@ -191,6 +193,7 @@ public class Call_API {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject1 = new JSONObject(response);
+                    System.out.println(jsonObject1);
                     if (jsonObject1.getString("status").equals("SUCCESS"))
                         Toast.makeText(context, "POST SUCCESS", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
@@ -218,7 +221,8 @@ public class Call_API {
                     return null;
                 }
             }
-//            @Nullable
+
+            //            @Nullable
 //            @Override
 //            protected Map<String, String> getParams() throws AuthFailureError {
 //               Map<String,String > param=new HashMap<>();
@@ -241,7 +245,7 @@ public class Call_API {
                 try {
                     JSONObject  jsonObject = new JSONObject(response);
 
-
+                    System.out.println(jsonObject);
                     if(!jsonObject.getString("status").equals("SUCCESS"))
                     {
                         Toast.makeText(context, "No POST", Toast.LENGTH_SHORT).show();
@@ -250,21 +254,24 @@ public class Call_API {
                     {   // lay mang data
                         JSONArray jsonArray=jsonObject.getJSONArray("data");
                         // tao list chua magn
-                        System.out.println(Url_get_Post+ID);
+
                         for(int i=0;i<jsonArray.length();i++)
                         {
                             OnePost onePost=new OnePost(
                                     jsonArray.getJSONObject(i).getJSONObject("post").getInt("id"),
+                                    jsonArray.getJSONObject(i).getJSONObject("post").getString("author"),
+                                    jsonArray.getJSONObject(i).getJSONObject("post").getString("avtAuthorUrl"),
                                     jsonArray.getJSONObject(i).getJSONObject("post").getString("content"),
                                     jsonArray.getJSONObject(i).getInt("numberOfLikes"),
-                                    jsonArray.getJSONObject(i).getInt("numberOfComments")
-                                   // jsonArray.getJSONObject(i).getString("URL")
-                                    );
-                            System.out.println(onePost.getContent());
+                                    jsonArray.getJSONObject(i).getInt("numberOfComments"));
+                            if(jsonArray.getJSONObject(i).getJSONObject("post").getJSONArray("imageVideos").length()!=0)
+                                onePost.setImage( jsonArray.getJSONObject(i).getJSONObject("post").getJSONArray("imageVideos").getJSONObject(0).getString("url"));
+                            System.out.println( jsonArray.getJSONObject(i).getJSONObject("post").getString("content"));
                             list.add(onePost);
                            // System.out.println(jsonArray.getJSONObject(i).getString("content"));
                         }
-                        System.out.println(list);
+
+
                     }
 
                 } catch (JSONException e) {
@@ -278,10 +285,7 @@ public class Call_API {
                 Toast.makeText(context,"vui long load lai",Toast.LENGTH_SHORT).show();
             }
         }){
-            @Override
-            public Priority getPriority() {
-                return Priority.IMMEDIATE;
-            }
+
         };
         requestQueue.add(jsonArrayRequest);
     }
@@ -338,13 +342,17 @@ public class Call_API {
         requestQueue.add(jsonArrayRequest);
 
     }
-    public void callApiNoti(int idAc)
+    public void callApigetNoti(int idAc, List<Notification> list)
     {    RequestQueue requestQueue=Volley.newRequestQueue(context);
         String urlNoti= url+"/api/v1/notification/";
         StringRequest jsonArrayRequest=new StringRequest(Request.Method.GET, urlNoti + idAc, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -361,7 +369,41 @@ public class Call_API {
         StringRequest jsonArrayRequest=new StringRequest(Request.Method.GET, urlRactPost + idPost+"/"+idAcount, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if(!jsonObject.getJSONArray("status").equals("SUCCESS"))
+                    {
+                        Toast.makeText(context,"vui long thu lai",Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
+            }
+        }
+        );
+
+    }
+ public void callApiDeleteReactionPost(int idAcount,int idPost)
+    {    RequestQueue requestQueue=Volley.newRequestQueue(context);
+        String urlRactPost= url+"/api/v1/react/delete/";
+        StringRequest jsonArrayRequest=new StringRequest(Request.Method.GET, urlRactPost + idPost+"/"+idAcount, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if(!jsonObject.getJSONArray("status").equals("SUCCESS"))
+                    {
+                        Toast.makeText(context,"vui long thu lai",Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override

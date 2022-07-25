@@ -1,5 +1,7 @@
 package com.example.bloomi.Adapter_Manage;
 
+import static com.example.bloomi.MainActivity.user_login;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloomi.CallAPI.Call_API;
 import com.example.bloomi.R;
 import com.example.bloomi.post_Bloom.OnePost;
 import com.squareup.picasso.Picasso;
@@ -23,11 +26,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     List<OnePost> posts;
     Context context;
     String avatar;
-    String userName;
-    public PostAdapter(Context context, List<OnePost> posts, String userName){
+    Call_API call_api;
+    public PostAdapter(Context context, List<OnePost> posts){
         this.context=context;
         this.posts=posts;
-        this.userName=userName;
+
     }
 
 
@@ -36,6 +39,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_post, parent, false);
+        call_api=new Call_API(context);
         return new ViewHolder(view);
     }
 
@@ -43,13 +47,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         OnePost onePost = posts.get(position);
-        holder.name.setText(userName);
+        holder.name.setText(onePost.getName());
         // chua có anh nenn vo
 //        Picasso.get().load(avatar).into(holder.avt);
 //        Picasso.get().load(onePost.getImage()).into(holder.image);
         // load anh tu url
+       // Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/bloomi-a2ac4.appspot.com/o/ID%20Account%3A%202%2Fimages%2F19f00c8f-99ed-4ce5-969e-31f70d61cf2d?alt=media&token=d6ded5a7-cfd9-42ff-b0de-5320e05dc130").into(holder.image);
         Picasso.get().load(onePost.getImage()).into(holder.image);
+       // Picasso.get().load(onePost.getAvatarimage()).into(holder.avt);
         holder.content.setText(onePost.getContent());
+        System.out.println(onePost.getContent());
         holder.likes.setText(" " +onePost.getLikes());
         holder.comment.setText(" " +onePost.getComment());
         holder.onePost_heartOrNot.setOnClickListener(new View.OnClickListener() {
@@ -58,9 +65,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 if(holder.onePost_heartOrNot.isChecked())
                 {
                     holder.likes.setText(" " +(onePost.getLikes()+1));
+                    call_api.callApiReactionPost(user_login.getAccout().getId(),onePost.getIdpost());
                 }
                 else
+                {
                     holder.likes.setText(" " +onePost.getLikes());
+                    call_api.callApiDeleteReactionPost(user_login.getAccout().getId(),onePost.getIdpost());
+                }
+
             }
         });
 

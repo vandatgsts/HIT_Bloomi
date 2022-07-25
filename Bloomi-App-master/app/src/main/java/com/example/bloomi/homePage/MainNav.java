@@ -76,9 +76,7 @@ public class MainNav extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.Nav_Home:
-                        binding.fragmentContainerMain.setCurrentItem(0);
-                        break;
+
                     case R.id.Nav_Group:
                         binding.fragmentContainerMain.setCurrentItem(1);
                         break;
@@ -94,7 +92,7 @@ public class MainNav extends AppCompatActivity {
 
                 }
 
-                return false;
+                return true;
             }
         });
     }

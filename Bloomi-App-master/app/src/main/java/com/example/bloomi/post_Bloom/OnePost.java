@@ -3,9 +3,15 @@ package com.example.bloomi.post_Bloom;
 public class OnePost {
     private int idpost;
 
+
+
+    public void setIdpost(int idpost) {
+        this.idpost = idpost;
+    }
+    String name;
     private String content;
     private int likes,comment;
-    private String image;
+    private String image,avatarimage;
     public int getComment() {
         return comment;
     }
@@ -29,6 +35,15 @@ public class OnePost {
     }
     public OnePost(int idpost, String content, int likes, int comment) {
         this.idpost = idpost;
+        this.content = content;
+        this.likes = likes;
+        this.comment = comment;
+    }
+
+    public OnePost(int idpost,String name,String avatarimage, String content, int likes, int comment) {
+        this.idpost = idpost;
+        this.name=name;
+        this.avatarimage=avatarimage;
         this.content = content;
         this.likes = likes;
         this.comment = comment;
@@ -60,5 +75,23 @@ public class OnePost {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+    public int getIdpost() {
+        return idpost;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAvatarimage() {
+        return avatarimage;
+    }
+
+    public void setAvatarimage(String avatarimage) {
+        this.avatarimage = avatarimage;
     }
 }

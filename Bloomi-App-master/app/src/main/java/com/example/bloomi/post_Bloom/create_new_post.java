@@ -11,17 +11,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.bloomi.CallAPI.Call_API;
+import com.example.bloomi.Login.SharedPrefManager;
 import com.example.bloomi.R;
 import com.example.bloomi.uses_manage;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,10 +54,10 @@ public class create_new_post extends Fragment {
     FirebaseStorage storage;
     StorageReference storageReference;
     // anh
-    DatabaseReference databaseReference;
     Uri filePath;
     String idImage;
-
+    // call api
+    Call_API call;
 
     public static oneNewPost NewPost=new oneNewPost();
 
@@ -78,26 +83,40 @@ public class create_new_post extends Fragment {
         });
 
         post=view.findViewById(R.id.f_createPost_post);
-        Call_API call=new Call_API(this.getActivity());
+        call=new Call_API(this.getActivity());
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    NewPost.setAccountId(account.getId());
-                    NewPost.setContent(content.getText().toString());
-                   // System.out.println("jyfhjkgfkjh"+content.getText().toString());
-                    upToFireBase();
-                    //getURLFireBase();
-                    call.call_Api_CreateNewPost(NewPost);
+                NewPost.setAccountId(account.getId());
+                NewPost.setContent(content.getText().toString());
+
+                // System.out.println("jyfhjkgfkjh"+content.getText().toString());
+                Thread tq=new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        upToFireBase();
+                    }
+                });
+                Thread t2=new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("link");
+                        System.out.println(NewPost.getUrl_image());
+                    }
+                });
+                tq.setPriority(Thread.MAX_PRIORITY);
+                t2.setPriority(Thread.MIN_PRIORITY);
+                tq.start();
+                t2.start();
 
 
-                    getFragmentManager().beginTransaction().remove(create_new_post.this).commit();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                       // System.out.println("url:"+NewPost.getUrl_image());
 
-            }
-        });
+//
+
+                getFragmentManager().beginTransaction().remove(create_new_post.this).commit();
+
+            }});
 
         Cancel=view.findViewById(R.id.f_createPost_cancel);
         Cancel.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +125,42 @@ public class create_new_post extends Fragment {
                 getFragmentManager().beginTransaction().remove(create_new_post.this).commit();
             }
         });
+        LinearLayout choosedisplaymode=view.findViewById(R.id.f_createPost_choosePrivacy);
+        choosedisplaymode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(getContext(),choosedisplaymode);
 
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu_displaymode, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        TextView f_createPost_textPrivacy=view.findViewById(R.id.f_createPost_textPrivacy);
+                        ImageView f_createPost_iconPrivacy=view.findViewById(R.id.f_createPost_iconPrivacy);
+                        switch (menuItem.getItemId()){
+                            case R.id.Friend: {
+                                NewPost.setDisplayMode(2);
+                                f_createPost_textPrivacy.setText("Friends");
+
+                            }
+                                break;
+                            case R.id.Everyone:{
+                                NewPost.setDisplayMode(1);
+                                f_createPost_textPrivacy.setText("Everyone");}
+                                break;
+                            case R.id.Onlyme:
+                            {
+                                NewPost.setDisplayMode(3);
+                                f_createPost_textPrivacy.setText("Only me");
+                            }
+                                break;
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
 
     return  view;
     }
@@ -143,13 +197,35 @@ public class create_new_post extends Fragment {
             progressDialog.show();
             idImage=UUID.randomUUID().toString();
             System.out.println(idImage);
-            StorageReference ref = storageReference.child("images/"+idImage);
+            StorageReference ref = storageReference.child("/images/"+idImage);
             ref.putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressDialog.dismiss();
-                            getURLFireBase();
+
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    NewPost.setUrl_image(uri.toString());
+                                    System.out.println(NewPost.getUrl_image());
+                                    try {
+                                        call.call_Api_CreateNewPost(NewPost);
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    // Got the download URL for 'users/me/profile.png'
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Handle any errors
+                                }
+                            });
+
+
+                           progressDialog.dismiss();
                             //Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -190,24 +266,6 @@ public class create_new_post extends Fragment {
 
         }
     }
-    public void getURLFireBase()
-    {
-        String location="/images/"+idImage;
-        StorageReference re=storageReference.child(location);
-        System.out.println(idImage);
-        re.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                NewPost.setUrl_image(uri.toString());
-                System.out.println(uri.toString());
-                // Got the download URL for 'users/me/profile.png'
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-    }
+
 
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Friend"
+        android:icon="@drawable/displayfriend"
+        android:title="Friend" />
+<item
+        android:id="@+id/Everyone"
+        android:icon="@drawable/displayfriend"
+        android:title="Everyone" />
+<item
+        android:id="@+id/Onlyme"
+        android:icon="@drawable/onlyme"
+        android:title="Only me" />
+
+</menu>

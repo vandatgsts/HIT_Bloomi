@@ -1,44 +1,39 @@
 package com.example.bloomi.homePage;
 
 
-
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloomi.Adapter_Manage.PostAdapter;
-import com.example.bloomi.CallAPI.Call_API;
-import com.example.bloomi.MainActivity;
+import com.example.bloomi.Login.SharedPrefManager;
 import com.example.bloomi.Notification.FragmentNotification;
 import com.example.bloomi.R;
 import com.example.bloomi.SearchAccount.FragmentSearchAccount;
-import com.example.bloomi.post_Bloom.OnePost;
 import com.example.bloomi.post_Bloom.create_new_post;
-import com.example.bloomi.uses_manage;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FragmentHome extends Fragment {
 
     RecyclerView recyclerView;
-
+    PostAdapter postAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        System.out.println("CHECK LIST IN CALL");
-        PostAdapter postAdapter = new PostAdapter(getActivity(), MainNav.list, "NguyenVanDat");
+       // System.out.println("CHECK LIST IN CALL");
+        postAdapter= new PostAdapter(getActivity(), MainNav.list);
         System.out.println(MainNav.list);
         recyclerView = view.findViewById(R.id.f_home_rv);
         recyclerView.setAdapter(postAdapter);
@@ -48,7 +43,7 @@ public class FragmentHome extends Fragment {
                 @Override
                 public void onClick(View view) {
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.add(R.id.fragmentContainer_main, new FragmentSearchAccount());
+                    fragmentTransaction.add(R.id.Activity_Main, new FragmentSearchAccount());
                     fragmentTransaction.commit();
                 }
             });
@@ -56,20 +51,43 @@ public class FragmentHome extends Fragment {
             f_home_addPost.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    System.out.println("Check lenh");
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.add(R.id.checkvui, new create_new_post());
+                    fragmentTransaction.add(R.id.Activity_Main, new create_new_post());
                     fragmentTransaction.commit(); }
 
 
             });
+        TextView bloomiTxt= view.findViewById(R.id.Bloomitxt);
+        bloomiTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(getContext(), bloomiTxt);
 
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu_logout, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        switch (menuItem.getItemId()){
+                            case R.id.add_account:
+                                break;
+                            case R.id.logout:
+                                SharedPrefManager.getInstance(getActivity()).logout();
+                                break;
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
+
+            }
+        });
             ImageView f_home_notification = view.findViewById(R.id.f_home_notification);
             f_home_notification.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.add(R.id.fragmentContainer_main, new FragmentNotification());
+                    fragmentTransaction.add(R.id.Activity_Main, new FragmentNotification());
                     fragmentTransaction.commit();
                 }
             });
