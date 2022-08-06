@@ -5,6 +5,15 @@ public class Notification {
     String noti_name,noti_action;
     int noti_time;
     String noti_time_unit;
+    int type=1;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public int getNoti_Image() {
         return noti_Image;
@@ -52,5 +61,10 @@ public class Notification {
         this.noti_action = noti_action;
         this.noti_time = noti_time;
         this.noti_time_unit = noti_time_unit;
+    }
+
+    public Notification(String noti_name, String noti_action) {
+        this.noti_name = noti_name;
+        this.noti_action = noti_action;
     }
 }

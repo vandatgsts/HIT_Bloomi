@@ -3,8 +3,6 @@ package com.example.bloomi.post_Bloom;
 public class OnePost {
     private int idpost;
 
-
-
     public void setIdpost(int idpost) {
         this.idpost = idpost;
     }

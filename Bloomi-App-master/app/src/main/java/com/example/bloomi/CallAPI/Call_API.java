@@ -1,6 +1,7 @@
 package com.example.bloomi.CallAPI;
 
 import static com.example.bloomi.homePage.MainNav.list;
+import static com.example.bloomi.homePage.MainNav.listnoti;
 
 import android.app.Activity;
 import android.content.Context;
@@ -77,6 +78,10 @@ public class Call_API {
                         Toast.makeText(context,"successful registration",Toast.LENGTH_SHORT).show();
                         //Intent intent=new Intent(context, LogIn.class);
                         //context.startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(context,"Password must be at least 8 characters, must contain at least 1 uppercase, lowercase, alphanumeric, and special characters!",Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -342,7 +347,8 @@ public class Call_API {
         requestQueue.add(jsonArrayRequest);
 
     }
-    public void callApigetNoti(int idAc, List<Notification> list)
+    // NOTI
+    public void callApigetNoti(int idAc)
     {    RequestQueue requestQueue=Volley.newRequestQueue(context);
         String urlNoti= url+"/api/v1/notification/";
         StringRequest jsonArrayRequest=new StringRequest(Request.Method.GET, urlNoti + idAc, new Response.Listener<String>() {
@@ -350,6 +356,18 @@ public class Call_API {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject=new JSONObject(response);
+                    if(jsonObject.getString("status").equals("SUCCESS"))
+                    {
+                        JSONArray jsonArray=jsonObject.getJSONArray("data");
+                        for(int i=0;i<jsonArray.length();i++)
+                        {
+                            Notification notification=new Notification( jsonArray.getJSONObject(i).getString("content"),
+                                                        jsonArray.getJSONObject(i).getJSONObject("account").getString("firstName")+
+                                                                 jsonArray.getJSONObject(i).getJSONObject("account").getString("lastName"));
+                            listnoti.add(notification);
+
+                        }
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -363,6 +381,44 @@ public class Call_API {
         );
 
     }
+    public void callAPIcreateNoTi(int idAcountRe,int idsent,int type)
+    {
+        RequestQueue requestQueue=Volley.newRequestQueue(context);
+        String urlRactPost= url+"/api/v1/notification/create";
+        StringRequest jsonArrayRequest=new StringRequest(Request.Method.POST, urlRactPost, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if(!jsonObject.getJSONArray("status").equals("SUCCESS"))
+                    {
+                        Toast.makeText(context,"vui long thu lai",Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> param=new HashMap<>();
+                param.put("idReceive",idsent+"");
+                param.put("idSender",idAcountRe+"");
+                param.put("type",type+"");
+                return param;
+            }
+        };
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    //
     public void callApiReactionPost(int idAcount,int idPost)
     {    RequestQueue requestQueue=Volley.newRequestQueue(context);
         String urlRactPost= url+"/api/v1/react/create/";

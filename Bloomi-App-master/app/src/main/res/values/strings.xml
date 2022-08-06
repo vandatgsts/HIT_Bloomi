@@ -60,5 +60,8 @@
     <string name="email">Email</string>
     <string name="everyone">Everyone</string>
     <string name="logic_will_get_you_from_a_to_b_imagination_will_take_you_everywhere">“Logic will get you from A to B. Imagination will take you everywhere.”</string>
+    <string name="profile">Profile</string>
+    <string name="update_profile_picture">Update Profile Picture</string>
+    <string name="my_friend">My Friend</string>
 
 </resources>

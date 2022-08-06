@@ -46,7 +46,7 @@ import java.util.UUID;
 public class create_new_post extends Fragment {
     private static final int PICK_IMAGE_REQUEST =100 ;
     ImageButton imagebutton;
-    ImageView setImage,Cancel;
+    ImageView setImage,Cancel,f_createPost_iconPrivacy;
     EditText content;
     uses_manage account= user_login.getAccout();
     Button post;
@@ -71,7 +71,7 @@ public class create_new_post extends Fragment {
         //databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("gs://bloomi-a2ac4.appspot.com");
 
         //
-
+        f_createPost_iconPrivacy=view.findViewById(R.id.f_createPost_iconPrivacy);
         imagebutton=view.findViewById(R.id.f_createPost_addImage);
         setImage=view.findViewById(R.id.f_createPost_image);
         content=view.findViewById(R.id.f_createPost_content);
@@ -141,6 +141,7 @@ public class create_new_post extends Fragment {
                             case R.id.Friend: {
                                 NewPost.setDisplayMode(2);
                                 f_createPost_textPrivacy.setText("Friends");
+                               
 
                             }
                                 break;
@@ -192,9 +193,9 @@ public class create_new_post extends Fragment {
     {
         if(filePath != null)
         {
-            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setTitle("Uploading...");
-            progressDialog.show();
+//            ProgressDialog progressDialog = new ProgressDialog(getActivity());
+//            progressDialog.setTitle("Uploading...");
+//            progressDialog.show();
             idImage=UUID.randomUUID().toString();
             System.out.println(idImage);
             StorageReference ref = storageReference.child("/images/"+idImage);
@@ -225,14 +226,14 @@ public class create_new_post extends Fragment {
                             });
 
 
-                           progressDialog.dismiss();
+                           //progressDialog.dismiss();
                             //Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
+                           // progressDialog.dismiss();
                             //Toast.makeText(getActivity(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -241,7 +242,7 @@ public class create_new_post extends Fragment {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            //progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
             // lay URL anh

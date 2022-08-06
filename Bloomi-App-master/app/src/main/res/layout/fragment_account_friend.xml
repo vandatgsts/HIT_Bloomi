@@ -16,9 +16,12 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/gradient_background" />
+            android:background="@drawable/gradient_background"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <RelativeLayout
+            android:id="@+id/relativeLayout"
             android:layout_width="19dp"
             android:layout_height="19dp"
             android:layout_marginTop="15dp"
@@ -31,6 +34,17 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_option" />
         </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/f_back_friend"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/back_btn"
+            app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
@@ -59,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Dương Trinh"
+                    android:text="Bloomi Hit"
                     android:textSize="18sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -71,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:maxWidth="250dp"
-                    android:text="“Logic will get you from A to B. Imagination will take you everywhere.”"
+                    android:text="@string/logic_will_get_you_from_a_to_b_imagination_will_take_you_everywhere"
                     android:textAlignment="center"
                     android:textColor="@color/text_gray"
                     android:textSize="12sp"
@@ -89,6 +103,7 @@
                     android:weightSum="6"
                     android:layout_marginTop="10dp">
                     <TextView
+                        android:id="@+id/f_add_Friend"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="5.7"

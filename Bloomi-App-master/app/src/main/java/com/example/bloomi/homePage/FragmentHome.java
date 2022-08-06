@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloomi.Adapter_Manage.PostAdapter;
+import com.example.bloomi.CallAPI.Call_API;
 import com.example.bloomi.Login.SharedPrefManager;
+import com.example.bloomi.MainActivity;
 import com.example.bloomi.Notification.FragmentNotification;
 import com.example.bloomi.R;
 import com.example.bloomi.SearchAccount.FragmentSearchAccount;
@@ -35,6 +37,7 @@ public class FragmentHome extends Fragment {
        // System.out.println("CHECK LIST IN CALL");
         postAdapter= new PostAdapter(getActivity(), MainNav.list);
         System.out.println(MainNav.list);
+
         recyclerView = view.findViewById(R.id.f_home_rv);
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

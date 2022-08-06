@@ -12,9 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloomi.Account.FragmentAccountFriend;
+import com.example.bloomi.Account.menu_profile;
 import com.example.bloomi.CallAPI.Call_API;
 import com.example.bloomi.R;
 import com.example.bloomi.post_Bloom.OnePost;
@@ -73,6 +78,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     call_api.callApiDeleteReactionPost(user_login.getAccout().getId(),onePost.getIdpost());
                 }
 
+            }
+        });
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.Activity_Main,new FragmentAccountFriend());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 

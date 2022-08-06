@@ -19,6 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.bloomi.Adapter_Manage.Menu_Adapter;
 import com.example.bloomi.CallAPI.Call_API;
 import com.example.bloomi.MainActivity;
+import com.example.bloomi.Notification.Notification;
 import com.example.bloomi.R;
 import com.example.bloomi.databinding.ActivityMainNavBinding;
 import com.example.bloomi.post_Bloom.OnePost;
@@ -31,6 +32,7 @@ import java.util.List;
 public class MainNav extends AppCompatActivity {
     ActivityMainNavBinding binding;
     public static List<OnePost> list=new ArrayList<>();
+    public static List<Notification> listnoti;
     uses_manage user= MainActivity.user_login.getAccout();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,5 +124,6 @@ public class MainNav extends AppCompatActivity {
     {
         Call_API call_api=new Call_API(this);
         call_api.call_Api_Get_Post(user.getId());
+        call_api.callApigetNoti(user.getId());
     }
 }
